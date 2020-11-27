@@ -1,11 +1,15 @@
 package model
 
 type User struct {
-	idUser     string       `json:"idUser"`
-	Nik        string       `json:"nik"`
-	TglLahir   TanggalLahir `json:"tglLahir"`
-	Pekerjaan  Pekerjaan    `json:"pekerjaan"`
-	Pendidikan Pendidikan   `json:"pendidikan"`
+	IdUser      string     `json:"idUser"`
+	Nik         string     `json:"nik"`
+	Username    string     `json:"username"`
+	TglLahir    string     `json:"tglLahir"`
+	Pekerjaan   Pekerjaan  `json:"pekerjaan"`
+	Pendidikan  Pendidikan `json:"pendidikan"`
+	UserStatus  int        `json:"userStatus"`
+	CreatedDate string     `json:"createdDate"`
+	UpdatedDate string     `json:"updatedDate"`
 }
 
 type Pekerjaan struct {
@@ -16,10 +20,4 @@ type Pekerjaan struct {
 type Pendidikan struct {
 	IdPendidikan    string `json:"idPendidikan"`
 	LabelPendidikan string `json:"labelPendidikan"`
-}
-
-type TanggalLahir struct {
-	Tanggal int `json:"tanggal"`
-	Bulan   int `json:"bulan"`
-	Tahun   int `json:"tahun"`
 }
