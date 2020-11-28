@@ -20,7 +20,7 @@ func NewUserRepo(db *sql.DB) IUserRepo {
 }
 func (u userRepo) CreateUser(user *model.User) error {
 	id := guuid.New()
-	user.IdUser = id.String()
+	user.UserId = id.String()
 	tx, err := u.db.Begin()
 	if err != nil {
 		return err
@@ -32,7 +32,7 @@ func (u userRepo) CreateUser(user *model.User) error {
 		logs.ErrorLogger.Println(err)
 		return err
 	}
-	_, err = stmt.Exec(id, user.Nik, user.Username, user.TglLahir, user.Pekerjaan.IdPekerjaan, user.Pendidikan.IdPendidikan)
+	_, err = stmt.Exec(id, user.IdCardNumber, user.Username, user.DateOfBirth, user.Job.JobId, user.Education.EducationId)
 	if err != nil {
 		_ = tx.Rollback()
 		logs.ErrorLogger.Println(err)
@@ -57,8 +57,8 @@ func (u userRepo) ReadUser(i int, i2 int) ([]*model.User, error) {
 	for rows.Next() {
 		user := model.User{}
 		err := rows.Scan(
-			&user.IdUser, &user.Nik, &user.Username, &user.TglLahir, &user.Pendidikan.IdPendidikan, &user.Pendidikan.LabelPendidikan,
-			&user.Pekerjaan.IdPekerjaan, &user.Pekerjaan.LabelPekerjaan, &user.UserStatus, &user.CreatedDate, &user.UpdatedDate)
+			&user.UserId, &user.IdCardNumber, &user.Username, &user.DateOfBirth, &user.Education.EducationId, &user.Education.EducationLabel,
+			&user.Job.JobId, &user.Job.JobLabel, &user.UserStatus, &user.CreatedDate, &user.UpdatedDate)
 		if err != nil {
 			log.Print(err)
 			logs.ErrorLogger.Println(err)
@@ -78,8 +78,8 @@ func (u userRepo) ReadUserById(s string) (*model.User, error) {
 	}
 	defer stmt.Close()
 	err = stmt.QueryRow(s).Scan(
-		&user.IdUser, &user.Nik, &user.Username, &user.TglLahir, &user.Pendidikan.IdPendidikan, &user.Pendidikan.LabelPendidikan,
-		&user.Pekerjaan.IdPekerjaan, &user.Pekerjaan.LabelPekerjaan, &user.UserStatus, &user.CreatedDate, &user.UpdatedDate)
+		&user.UserId, &user.IdCardNumber, &user.Username, &user.DateOfBirth, &user.Education.EducationId, &user.Education.EducationLabel,
+		&user.Job.JobId, &user.Job.JobLabel, &user.UserStatus, &user.CreatedDate, &user.UpdatedDate)
 	if err != nil {
 		logs.ErrorLogger.Println(err)
 		return &user, err
@@ -98,7 +98,7 @@ func (u userRepo) UpdateUser(user *model.User) error {
 		tx.Rollback()
 		return err
 	}
-	_, err = stmt.Exec(user.Nik, user.Username, user.TglLahir, user.Pekerjaan.IdPekerjaan, user.Pendidikan.IdPendidikan, user.IdUser)
+	_, err = stmt.Exec(user.IdCardNumber, user.Username, user.DateOfBirth, user.Job.JobId, user.Education.EducationId, user.UserId)
 	if err != nil {
 		tx.Rollback()
 		return err
@@ -126,8 +126,8 @@ func (u userRepo) DeleteUser(s string) error {
 	return tx.Commit()
 }
 
-func (u userRepo) ReadPekerjaan() ([]*model.Pekerjaan, error) {
-	listPekerjaan := make([]*model.Pekerjaan, 0)
+func (u userRepo) ReadJob() ([]*model.Job, error) {
+	jobList := make([]*model.Job, 0)
 	stmt, err := u.db.Prepare(utils.SELECT_PEKERJAAN)
 	if err != nil {
 		logs.ErrorLogger.Println(err)
@@ -141,19 +141,19 @@ func (u userRepo) ReadPekerjaan() ([]*model.Pekerjaan, error) {
 	}
 
 	for rows.Next() {
-		pekerjaan := model.Pekerjaan{}
-		err := rows.Scan(&pekerjaan.IdPekerjaan, &pekerjaan.LabelPekerjaan)
+		job := model.Job{}
+		err := rows.Scan(&job.JobId, &job.JobLabel)
 		if err != nil {
 			logs.ErrorLogger.Println(err)
 			return nil, err
 		}
-		listPekerjaan = append(listPekerjaan, &pekerjaan)
+		jobList = append(jobList, &job)
 	}
-	return listPekerjaan, nil
+	return jobList, nil
 }
 
-func (u userRepo) ReadPendidikan() ([]*model.Pendidikan, error) {
-	listPendidikan := make([]*model.Pendidikan, 0)
+func (u userRepo) ReadEducation() ([]*model.Education, error) {
+	educationList := make([]*model.Education, 0)
 	stmt, err := u.db.Prepare(utils.SELECT_PENDIDIKAN)
 	if err != nil {
 		logs.ErrorLogger.Println(err)
@@ -167,13 +167,13 @@ func (u userRepo) ReadPendidikan() ([]*model.Pendidikan, error) {
 	}
 
 	for rows.Next() {
-		pendidikan := model.Pendidikan{}
-		err := rows.Scan(&pendidikan.IdPendidikan, &pendidikan.LabelPendidikan)
+		education := model.Education{}
+		err := rows.Scan(&education.EducationId, &education.EducationLabel)
 		if err != nil {
 			logs.ErrorLogger.Println(err)
 			return nil, err
 		}
-		listPendidikan = append(listPendidikan, &pendidikan)
+		educationList = append(educationList, &education)
 	}
-	return listPendidikan, nil
+	return educationList, nil
 }

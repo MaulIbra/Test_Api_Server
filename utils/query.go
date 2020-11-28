@@ -16,7 +16,7 @@ const (
     u.update_date
     FROM m_user as u INNER JOIN m_pendidikan as p
     ON u.id_pendidikan = p.id_pendidikan inner join
-    m_pekerjaan as pk on u.id_pekerjaan = pk.id_pekerjaan LIMIT ?,?`
+    m_pekerjaan as pk on u.id_pekerjaan = pk.id_pekerjaan where u.user_status = 1 LIMIT ?,?`
 	SELECT_USER_BY_ID = `SELECT 
 	u.id_user,
     u.nik,

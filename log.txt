@@ -1,0 +1,16 @@
+ERROR: 2020/11/28 10:48:30 userRepoImpl.go:84: sql: no rows in result set
+ERROR: 2020/11/28 10:48:30 userUsecaseImpl.go:40: sql: no rows in result set
+ERROR: 2020/11/28 10:50:31 userRepoImpl.go:84: sql: no rows in result set
+ERROR: 2020/11/28 10:50:31 userUsecaseImpl.go:40: sql: no rows in result set
+ERROR: 2020/11/28 10:51:57 userRepoImpl.go:84: sql: no rows in result set
+ERROR: 2020/11/28 10:51:57 userUsecaseImpl.go:40: sql: no rows in result set
+ERROR: 2020/11/28 10:53:11 userRepoImpl.go:84: sql: no rows in result set
+ERROR: 2020/11/28 10:53:11 userUsecaseImpl.go:40: sql: no rows in result set
+ERROR: 2020/11/28 10:53:17 userRepoImpl.go:84: sql: no rows in result set
+ERROR: 2020/11/28 10:53:17 userUsecaseImpl.go:40: sql: no rows in result set
+ERROR: 2020/11/28 11:15:15 userRepoImpl.go:38: Error 1062: Duplicate entry '3209120503980004' for key 'm_user.nik_UNIQUE'
+ERROR: 2020/11/28 11:15:15 userUsecaseImpl.go:15: Error 1062: Duplicate entry '3209120503980004' for key 'm_user.nik_UNIQUE'
+ERROR: 2020/11/28 11:15:17 userRepoImpl.go:38: Error 1062: Duplicate entry '3209120503980004' for key 'm_user.nik_UNIQUE'
+ERROR: 2020/11/28 11:15:17 userUsecaseImpl.go:15: Error 1062: Duplicate entry '3209120503980004' for key 'm_user.nik_UNIQUE'
+ERROR: 2020/11/28 11:16:59 userRepoImpl.go:84: sql: no rows in result set
+ERROR: 2020/11/28 11:16:59 userUsecaseImpl.go:40: sql: no rows in result set

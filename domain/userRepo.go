@@ -8,6 +8,6 @@ type IUserRepo interface {
 	ReadUserById(string) (*model.User, error)
 	UpdateUser(*model.User) error
 	DeleteUser(string) error
-	ReadPekerjaan() ([]*model.Pekerjaan, error)
-	ReadPendidikan() ([]*model.Pendidikan, error)
+	ReadJob() ([]*model.Job, error)
+	ReadEducation() ([]*model.Education, error)
 }

@@ -11,7 +11,12 @@ type response struct {
 	Payload    interface{} `json:"payload"`
 }
 
-func Response(res http.ResponseWriter, statusCode int, data *interface{}) {
+type responseNoPayload struct {
+	StatusCode int         `json:"statusCode"`
+	Message    string      `json:"message"`
+}
+
+func Response(res http.ResponseWriter, statusCode int, data interface{}) {
 	res.Header().Set("Content-Type", "application/json")
 	res.WriteHeader(statusCode)
 	response := response{statusCode, http.StatusText(statusCode), data}
@@ -19,3 +24,10 @@ func Response(res http.ResponseWriter, statusCode int, data *interface{}) {
 	res.Write(byteOfData)
 }
 
+func ResponseWithoutPayload(res http.ResponseWriter, statusCode int){
+	res.Header().Set("Content-Type", "application/json")
+	res.WriteHeader(statusCode)
+	response := responseNoPayload{statusCode, http.StatusText(statusCode)}
+	byteOfData, _ := json.Marshal(response)
+	res.Write(byteOfData)
+}

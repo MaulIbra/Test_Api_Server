@@ -1,23 +1,23 @@
 package model
 
 type User struct {
-	IdUser      string     `json:"idUser"`
-	Nik         string     `json:"nik"`
-	Username    string     `json:"username"`
-	TglLahir    string     `json:"tglLahir"`
-	Pekerjaan   Pekerjaan  `json:"pekerjaan"`
-	Pendidikan  Pendidikan `json:"pendidikan"`
-	UserStatus  int        `json:"userStatus"`
-	CreatedDate string     `json:"createdDate"`
-	UpdatedDate string     `json:"updatedDate"`
+	UserId       string    `json:"idUser"`
+	IdCardNumber string    `json:"idCardNumber"`
+	Username     string    `json:"username"`
+	DateOfBirth  string    `json:"dateOfBirth"`
+	Job          Job       `json:"job"`
+	Education    Education `json:"education"`
+	UserStatus   int       `json:"userStatus"`
+	CreatedDate  string    `json:"createdDate"`
+	UpdatedDate  string    `json:"updatedDate"`
 }
 
-type Pekerjaan struct {
-	IdPekerjaan    string `json:"idPekerjaan"`
-	LabelPekerjaan string `json:"labelPekerjaan"`
+type Job struct {
+	JobId    string `json:"jobId"`
+	JobLabel string `json:"jobLabel"`
 }
 
-type Pendidikan struct {
-	IdPendidikan    string `json:"idPendidikan"`
-	LabelPendidikan string `json:"labelPendidikan"`
+type Education struct {
+	EducationId    string `json:"educationId"`
+	EducationLabel string `json:"educationLabel"`
 }

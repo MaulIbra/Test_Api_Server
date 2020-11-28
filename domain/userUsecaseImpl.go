@@ -15,7 +15,7 @@ func (u userUsecase) CreateUser(user *model.User) (*model.User, error) {
 		logs.ErrorLogger.Println(err)
 		return nil, err
 	}
-	userResponse, err := u.repo.ReadUserById(user.IdUser)
+	userResponse, err := u.repo.ReadUserById(user.UserId)
 	if err != nil {
 		logs.ErrorLogger.Println(err)
 		return nil, err
@@ -43,13 +43,17 @@ func (u userUsecase) ReadUserById(s string) (*model.User, error) {
 	return user,nil
 }
 
-func (u userUsecase) UpdateUser(user *model.User) error {
+func (u userUsecase) UpdateUser(user *model.User) (*model.User,error) {
 	err := u.repo.UpdateUser(user)
 	if err != nil {
 		logs.ErrorLogger.Println(err)
-		return err
+		return nil,err
 	}
-	return nil
+	userResp,err := u.repo.ReadUserById(user.UserId)
+	if err != nil {
+		return nil,err
+	}
+	return userResp,err
 }
 
 func (u userUsecase) DeleteUser(s string) error {
@@ -61,22 +65,22 @@ func (u userUsecase) DeleteUser(s string) error {
 	return nil
 }
 
-func (u userUsecase) ReadPekerjaan() ([]*model.Pekerjaan, error) {
-	listPekerjaan,err := u.repo.ReadPekerjaan()
+func (u userUsecase) ReadJob() ([]*model.Job, error) {
+	jobList,err := u.repo.ReadJob()
 	if err != nil {
 		logs.ErrorLogger.Println(err)
 		return nil, err
 	}
-	return listPekerjaan,nil
+	return jobList,nil
 }
 
-func (u userUsecase) ReadPendidikan() ([]*model.Pendidikan, error) {
-	listPendidikan,err := u.repo.ReadPendidikan()
+func (u userUsecase) ReadEducation() ([]*model.Education, error) {
+	educationList,err := u.repo.ReadEducation()
 	if err != nil {
 		logs.ErrorLogger.Println(err)
 		return nil, err
 	}
-	return listPendidikan,nil
+	return educationList,nil
 }
 
 func NewUserUsecase(repo IUserRepo) IUserUsecase {
