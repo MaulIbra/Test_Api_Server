@@ -33,6 +33,11 @@ func (uc *UserController) CreateUser(w http.ResponseWriter, r *http.Request) {
 			w, http.StatusBadRequest)
 		return
 	}
+	isValid := user.Validate()
+	if !isValid{
+		utils.Response(w, http.StatusBadRequest, user)
+		return
+	}
 	userResponse, err := uc.Usecase.CreateUser(&user)
 	if err != nil {
 		utils.ResponseWithoutPayload(
@@ -79,6 +84,10 @@ func (uc *UserController) ReadUserById(w http.ResponseWriter, r *http.Request) {
 			w, http.StatusBadGateway)
 		return
 	}
+	if user.Job == (model.Job{}){
+		utils.Response(w, http.StatusNoContent,user)
+		return
+	}
 	utils.Response(w, http.StatusOK, user)
 }
 
@@ -97,10 +106,19 @@ func (uc *UserController) UpdateUser(w http.ResponseWriter, r *http.Request) {
 			w, http.StatusBadRequest)
 		return
 	}
+	isValid := user.Validate()
+	if !isValid{
+		utils.Response(w, http.StatusBadRequest, user)
+		return
+	}
 	userResp, err := uc.Usecase.UpdateUser(&user)
 	if err != nil {
 		utils.ResponseWithoutPayload(
 			w, http.StatusBadGateway)
+		return
+	}
+	if userResp.Job == (model.Job{}){
+		utils.Response(w, http.StatusNoContent,userResp)
 		return
 	}
 	utils.Response(w, http.StatusOK, userResp)

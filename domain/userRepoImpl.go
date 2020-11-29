@@ -69,6 +69,22 @@ func (u userRepo) ReadUser(i int, i2 int) ([]*model.User, error) {
 	return users, nil
 }
 
+func (u userRepo) CountUser() (int, error) {
+	var totalData int
+	stmt, err := u.db.Prepare(utils.SELECT_COUNT_DATA_USER)
+	if err != nil {
+		logs.ErrorLogger.Println(err)
+		return totalData, err
+	}
+	defer stmt.Close()
+	err = stmt.QueryRow().Scan(&totalData)
+	if err != nil {
+		logs.ErrorLogger.Println(err)
+		return totalData, err
+	}
+	return totalData, nil
+}
+
 func (u userRepo) ReadUserById(s string) (*model.User, error) {
 	user := model.User{}
 	stmt, err := u.db.Prepare(utils.SELECT_USER_BY_ID)
@@ -81,8 +97,12 @@ func (u userRepo) ReadUserById(s string) (*model.User, error) {
 		&user.UserId, &user.IdCardNumber, &user.Username, &user.DateOfBirth, &user.Education.EducationId, &user.Education.EducationLabel,
 		&user.Job.JobId, &user.Job.JobLabel, &user.UserStatus, &user.CreatedDate, &user.UpdatedDate)
 	if err != nil {
-		logs.ErrorLogger.Println(err)
-		return &user, err
+		if err == sql.ErrNoRows {
+			return &user, nil
+		}else{
+			logs.ErrorLogger.Println(err)
+			return &user, err
+		}
 	}
 	return &user, nil
 }
@@ -108,7 +128,6 @@ func (u userRepo) UpdateUser(user *model.User) error {
 
 func (u userRepo) DeleteUser(s string) error {
 	tx, err := u.db.Begin()
-	status := 0
 	if err != nil {
 		return err
 	}
@@ -118,7 +137,7 @@ func (u userRepo) DeleteUser(s string) error {
 		tx.Rollback()
 		return err
 	}
-	_, err = stmt.Exec(status, s)
+	_, err = stmt.Exec(s)
 	if err != nil {
 		tx.Rollback()
 		return err

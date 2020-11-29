@@ -14,3 +14,32 @@ ERROR: 2020/11/28 11:15:17 userRepoImpl.go:38: Error 1062: Duplicate entry '3209
 ERROR: 2020/11/28 11:15:17 userUsecaseImpl.go:15: Error 1062: Duplicate entry '3209120503980004' for key 'm_user.nik_UNIQUE'
 ERROR: 2020/11/28 11:16:59 userRepoImpl.go:84: sql: no rows in result set
 ERROR: 2020/11/28 11:16:59 userUsecaseImpl.go:40: sql: no rows in result set
+ERROR: 2020/11/28 17:39:57 userRepoImpl.go:38: Error 1062: Duplicate entry '3209120503980004' for key 'm_user.nik_UNIQUE'
+ERROR: 2020/11/28 17:39:57 userUsecaseImpl.go:15: Error 1062: Duplicate entry '3209120503980004' for key 'm_user.nik_UNIQUE'
+ERROR: 2020/11/28 20:37:42 userRepoImpl.go:38: Error 1292: Incorrect date value: '' for column 'tgl_lahir' at row 1
+ERROR: 2020/11/28 20:37:42 userUsecaseImpl.go:15: Error 1292: Incorrect date value: '' for column 'tgl_lahir' at row 1
+ERROR: 2020/11/28 20:40:11 userRepoImpl.go:38: Error 1292: Incorrect date value: '' for column 'tgl_lahir' at row 1
+ERROR: 2020/11/28 20:40:11 userUsecaseImpl.go:15: Error 1292: Incorrect date value: '' for column 'tgl_lahir' at row 1
+ERROR: 2020/11/28 20:42:56 userUsecaseImpl.go:49: Error 1406: Data too long for column 'nik' at row 1
+ERROR: 2020/11/28 21:33:24 userUsecaseImpl.go:49: Error 1292: Incorrect date value: '1998-03-05T17:00:00.000Z' for column 'tgl_lahir' at row 1
+ERROR: 2020/11/28 21:34:29 userUsecaseImpl.go:49: Error 1292: Incorrect date value: '1998-03-03T17:00:00.000Z' for column 'tgl_lahir' at row 1
+ERROR: 2020/11/29 08:42:44 userRepoImpl.go:100: sql: no rows in result set
+ERROR: 2020/11/29 08:42:46 userUsecaseImpl.go:60: sql: no rows in result set
+ERROR: 2020/11/30 03:56:26 userRepoImpl.go:100: sql: no rows in result set
+ERROR: 2020/11/30 03:56:38 userRepoImpl.go:38: Error 1406: Data too long for column 'nik' at row 1
+ERROR: 2020/11/30 03:56:38 userUsecaseImpl.go:16: Error 1406: Data too long for column 'nik' at row 1
+ERROR: 2020/11/30 03:57:56 userRepoImpl.go:38: Error 1406: Data too long for column 'nik' at row 1
+ERROR: 2020/11/30 03:57:56 userUsecaseImpl.go:16: Error 1406: Data too long for column 'nik' at row 1
+ERROR: 2020/11/30 03:58:13 userRepoImpl.go:38: Error 1406: Data too long for column 'nik' at row 1
+ERROR: 2020/11/30 03:58:13 userUsecaseImpl.go:16: Error 1406: Data too long for column 'nik' at row 1
+ERROR: 2020/11/30 03:59:54 userRepoImpl.go:38: Error 1406: Data too long for column 'nik' at row 1
+ERROR: 2020/11/30 03:59:54 userUsecaseImpl.go:16: Error 1406: Data too long for column 'nik' at row 1
+ERROR: 2020/11/30 04:00:26 userRepoImpl.go:38: Error 1406: Data too long for column 'nik' at row 1
+ERROR: 2020/11/30 04:00:26 userUsecaseImpl.go:16: Error 1406: Data too long for column 'nik' at row 1
+ERROR: 2020/11/30 04:01:02 userRepoImpl.go:38: Error 1406: Data too long for column 'nik' at row 1
+ERROR: 2020/11/30 04:01:02 userUsecaseImpl.go:16: Error 1406: Data too long for column 'nik' at row 1
+ERROR: 2020/11/30 04:31:34 userRepoImpl.go:100: sql: no rows in result set
+ERROR: 2020/11/30 04:31:37 userUsecaseImpl.go:56: sql: no rows in result set
+ERROR: 2020/11/30 04:39:36 userUsecaseImpl.go:65: Error 1062: Duplicate entry '320192020398440' for key 'm_user.nik_UNIQUE'
+ERROR: 2020/11/30 06:04:17 userRepoImpl.go:38: Error 1452: Cannot add or update a child row: a foreign key constraint fails (`db_user`.`m_user`, CONSTRAINT `fk_m_user_m_pekerjaan` FOREIGN KEY (`id_pekerjaan`) REFERENCES `m_pekerjaan` (`id_pekerjaan`))
+ERROR: 2020/11/30 06:04:17 userUsecaseImpl.go:16: Error 1452: Cannot add or update a child row: a foreign key constraint fails (`db_user`.`m_user`, CONSTRAINT `fk_m_user_m_pekerjaan` FOREIGN KEY (`id_pekerjaan`) REFERENCES `m_pekerjaan` (`id_pekerjaan`))
