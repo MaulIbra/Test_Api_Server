@@ -34,7 +34,8 @@ const (
     m_pekerjaan as pk on u.id_pekerjaan = pk.id_pekerjaan
 	WHERE u.id_user = ?`
 	UPDATE_USER = `UPDATE  m_user set nik=?,username=?,tgl_lahir=?,id_pekerjaan=?,id_pendidikan=? WHERE id_user = ?`
-	DELETE_USER = `UPDATE m_user set user_status=? where id_user=?`
+	DELETE_USER = `delete from m_user where id_user=?`
+	SELECT_COUNT_DATA_USER = `SELECT count(*) as total_data FROM db_user.m_user`
 	SELECT_PEKERJAAN = `SELECT * FROM m_pekerjaan`
 	SELECT_PENDIDIKAN = `SELECT * FROM m_pendidikan`
 

@@ -12,6 +12,18 @@ type User struct {
 	UpdatedDate  string    `json:"updatedDate"`
 }
 
+type UserList struct {
+	Users []*User `json:"users"`
+	Metadata Metadata `json:"metadata"`
+}
+
+type Metadata struct {
+	CurrentPage int `json:"currentPage"`
+	FirstPage   int `json:"firstPage"`
+	LastPage    int `json:"lastPage"`
+	TotalData   int `json:"totalData"`
+}
+
 type Job struct {
 	JobId    string `json:"jobId"`
 	JobLabel string `json:"jobLabel"`
