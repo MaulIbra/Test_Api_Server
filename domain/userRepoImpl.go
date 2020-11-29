@@ -97,8 +97,12 @@ func (u userRepo) ReadUserById(s string) (*model.User, error) {
 		&user.UserId, &user.IdCardNumber, &user.Username, &user.DateOfBirth, &user.Education.EducationId, &user.Education.EducationLabel,
 		&user.Job.JobId, &user.Job.JobLabel, &user.UserStatus, &user.CreatedDate, &user.UpdatedDate)
 	if err != nil {
-		logs.ErrorLogger.Println(err)
-		return &user, err
+		if err == sql.ErrNoRows {
+			return &user, nil
+		}else{
+			logs.ErrorLogger.Println(err)
+			return &user, err
+		}
 	}
 	return &user, nil
 }
