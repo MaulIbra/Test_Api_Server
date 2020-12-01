@@ -9,7 +9,6 @@ func GetEnv(key, defVal string) string {
 	viper.SetConfigName("config")
 	viper.AddConfigPath(".")
 	if err := viper.ReadInConfig(); err != nil {
-		log.Printf("Keyname : %v, not found, default key value : %v, has been loaded", key, defVal)
 		return defVal
 	}
 	value, ok := viper.Get(key).(string)

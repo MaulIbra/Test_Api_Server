@@ -1,20 +1,21 @@
-package domain
+package user
 
 import (
 	"github.com/MaulIbra/Test_Api_Server/model"
 	"github.com/MaulIbra/Test_Api_Server/utils"
 	jwtToken "github.com/MaulIbra/go_module_jwtToken"
+	guuid "github.com/google/uuid"
+	"github.com/gorilla/mux"
 	"net/http"
 	"strconv"
 )
 
 type UserController struct {
-	Route   *AppRoute
 	Usecase IUserUsecase
 }
 
-func (uc *UserController) UserRoute() {
-	userRoute := uc.Route.Router.PathPrefix("/user").Subrouter()
+func (uc *UserController) UserRoute(router *mux.Router) {
+	userRoute := router.PathPrefix("/user").Subrouter()
 	userRoute.Use(jwtToken.TokenValidation)
 	userRoute.HandleFunc("", uc.CreateUser).Methods(http.MethodPost)
 	userRoute.HandleFunc("/{page}/{limit}", uc.ReadUser).Methods(http.MethodGet)
@@ -22,7 +23,7 @@ func (uc *UserController) UserRoute() {
 	userRoute.HandleFunc("/{id}", uc.UpdateUser).Methods(http.MethodPut)
 	userRoute.HandleFunc("/{id}", uc.DeleteUser).Methods(http.MethodDelete)
 
-	etcRoute := uc.Route.Router.PathPrefix("").Subrouter()
+	etcRoute := router.PathPrefix("").Subrouter()
 	etcRoute.Use(jwtToken.TokenValidation)
 	etcRoute.HandleFunc("/job", uc.ReadJob).Methods(http.MethodGet)
 	etcRoute.HandleFunc("/education", uc.ReadEducation).Methods(http.MethodGet)
@@ -41,6 +42,7 @@ func (uc *UserController) CreateUser(w http.ResponseWriter, r *http.Request) {
 		utils.Response(w, http.StatusBadRequest, user)
 		return
 	}
+	user.UserId = guuid.New().String()
 	userResponse, err := uc.Usecase.CreateUser(&user)
 	if err != nil {
 		utils.ResponseWithoutPayload(

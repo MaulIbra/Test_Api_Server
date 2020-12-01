@@ -1,12 +1,9 @@
-package domain
+package user
 
 import (
 	"database/sql"
 	"github.com/MaulIbra/Test_Api_Server/model"
 	"github.com/MaulIbra/Test_Api_Server/utils"
-	logs "github.com/MaulIbra/logs_module"
-	guuid "github.com/google/uuid"
-	"log"
 )
 
 type userRepo struct {
@@ -19,8 +16,6 @@ func NewUserRepo(db *sql.DB) IUserRepo {
 	}
 }
 func (u userRepo) CreateUser(user *model.User) error {
-	id := guuid.New()
-	user.UserId = id.String()
 	tx, err := u.db.Begin()
 	if err != nil {
 		return err
@@ -29,13 +24,11 @@ func (u userRepo) CreateUser(user *model.User) error {
 	defer stmt.Close()
 	if err != nil {
 		_ = tx.Rollback()
-		logs.ErrorLogger.Println(err)
 		return err
 	}
-	_, err = stmt.Exec(id, user.IdCardNumber, user.Username, user.DateOfBirth, user.Job.JobId, user.Education.EducationId)
+	_, err = stmt.Exec(user.UserId, user.IdCardNumber, user.Username, user.DateOfBirth, user.Job.JobId, user.Education.EducationId)
 	if err != nil {
 		_ = tx.Rollback()
-		logs.ErrorLogger.Println(err)
 		return err
 	}
 
@@ -60,8 +53,6 @@ func (u userRepo) ReadUser(i int, i2 int) ([]*model.User, error) {
 			&user.UserId, &user.IdCardNumber, &user.Username, &user.DateOfBirth, &user.Education.EducationId, &user.Education.EducationLabel,
 			&user.Job.JobId, &user.Job.JobLabel, &user.UserStatus, &user.CreatedDate, &user.UpdatedDate)
 		if err != nil {
-			log.Print(err)
-			logs.ErrorLogger.Println(err)
 			return nil, err
 		}
 		users = append(users, &user)
@@ -73,13 +64,11 @@ func (u userRepo) CountUser() (int, error) {
 	var totalData int
 	stmt, err := u.db.Prepare(utils.SELECT_COUNT_DATA_USER)
 	if err != nil {
-		logs.ErrorLogger.Println(err)
 		return totalData, err
 	}
 	defer stmt.Close()
 	err = stmt.QueryRow().Scan(&totalData)
 	if err != nil {
-		logs.ErrorLogger.Println(err)
 		return totalData, err
 	}
 	return totalData, nil
@@ -89,7 +78,6 @@ func (u userRepo) ReadUserById(s string) (*model.User, error) {
 	user := model.User{}
 	stmt, err := u.db.Prepare(utils.SELECT_USER_BY_ID)
 	if err != nil {
-		logs.ErrorLogger.Println(err)
 		return nil, err
 	}
 	defer stmt.Close()
@@ -100,7 +88,6 @@ func (u userRepo) ReadUserById(s string) (*model.User, error) {
 		if err == sql.ErrNoRows {
 			return &user, nil
 		}else{
-			logs.ErrorLogger.Println(err)
 			return &user, err
 		}
 	}
@@ -113,7 +100,7 @@ func (u userRepo) UpdateUser(user *model.User) error {
 		return err
 	}
 	stmt, err := tx.Prepare(utils.UPDATE_USER)
-	defer stmt.Close()
+
 	if err != nil {
 		tx.Rollback()
 		return err
@@ -123,6 +110,7 @@ func (u userRepo) UpdateUser(user *model.User) error {
 		tx.Rollback()
 		return err
 	}
+	stmt.Close()
 	return tx.Commit()
 }
 
@@ -149,13 +137,11 @@ func (u userRepo) ReadJob() ([]*model.Job, error) {
 	jobList := make([]*model.Job, 0)
 	stmt, err := u.db.Prepare(utils.SELECT_PEKERJAAN)
 	if err != nil {
-		logs.ErrorLogger.Println(err)
 		return nil, err
 	}
 	defer stmt.Close()
 	rows, err := stmt.Query()
 	if err != nil {
-		logs.ErrorLogger.Println(err)
 		return nil, err
 	}
 
@@ -163,7 +149,6 @@ func (u userRepo) ReadJob() ([]*model.Job, error) {
 		job := model.Job{}
 		err := rows.Scan(&job.JobId, &job.JobLabel)
 		if err != nil {
-			logs.ErrorLogger.Println(err)
 			return nil, err
 		}
 		jobList = append(jobList, &job)
@@ -175,13 +160,11 @@ func (u userRepo) ReadEducation() ([]*model.Education, error) {
 	educationList := make([]*model.Education, 0)
 	stmt, err := u.db.Prepare(utils.SELECT_PENDIDIKAN)
 	if err != nil {
-		logs.ErrorLogger.Println(err)
 		return nil, err
 	}
 	defer stmt.Close()
 	rows, err := stmt.Query()
 	if err != nil {
-		logs.ErrorLogger.Println(err)
 		return nil, err
 	}
 
@@ -189,7 +172,6 @@ func (u userRepo) ReadEducation() ([]*model.Education, error) {
 		education := model.Education{}
 		err := rows.Scan(&education.EducationId, &education.EducationLabel)
 		if err != nil {
-			logs.ErrorLogger.Println(err)
 			return nil, err
 		}
 		educationList = append(educationList, &education)
