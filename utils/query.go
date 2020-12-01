@@ -39,4 +39,7 @@ const (
 	SELECT_PEKERJAAN = `SELECT * FROM m_pekerjaan`
 	SELECT_PENDIDIKAN = `SELECT * FROM m_pendidikan`
 
+	CREATE_ACCOUNT = `INSERT INTO m_account(account_id,email,password) values (?,?,?)`
+	SELECT_ACCOUNT_BY_EMAIL = `SELECT * FROM m_account where email=?`
+
 )

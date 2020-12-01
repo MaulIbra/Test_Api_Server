@@ -3,6 +3,7 @@ package domain
 import (
 	"github.com/MaulIbra/Test_Api_Server/model"
 	"github.com/MaulIbra/Test_Api_Server/utils"
+	jwtToken "github.com/MaulIbra/go_module_jwtToken"
 	"net/http"
 	"strconv"
 )
@@ -14,6 +15,7 @@ type UserController struct {
 
 func (uc *UserController) UserRoute() {
 	userRoute := uc.Route.Router.PathPrefix("/user").Subrouter()
+	userRoute.Use(jwtToken.TokenValidation)
 	userRoute.HandleFunc("", uc.CreateUser).Methods(http.MethodPost)
 	userRoute.HandleFunc("/{page}/{limit}", uc.ReadUser).Methods(http.MethodGet)
 	userRoute.HandleFunc("/{id}", uc.ReadUserById).Methods(http.MethodGet)
@@ -21,6 +23,7 @@ func (uc *UserController) UserRoute() {
 	userRoute.HandleFunc("/{id}", uc.DeleteUser).Methods(http.MethodDelete)
 
 	etcRoute := uc.Route.Router.PathPrefix("").Subrouter()
+	etcRoute.Use(jwtToken.TokenValidation)
 	etcRoute.HandleFunc("/job", uc.ReadJob).Methods(http.MethodGet)
 	etcRoute.HandleFunc("/education", uc.ReadEducation).Methods(http.MethodGet)
 }

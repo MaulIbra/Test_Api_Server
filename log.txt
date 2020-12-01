@@ -43,3 +43,25 @@ ERROR: 2020/11/30 04:31:37 userUsecaseImpl.go:56: sql: no rows in result set
 ERROR: 2020/11/30 04:39:36 userUsecaseImpl.go:65: Error 1062: Duplicate entry '320192020398440' for key 'm_user.nik_UNIQUE'
 ERROR: 2020/11/30 06:04:17 userRepoImpl.go:38: Error 1452: Cannot add or update a child row: a foreign key constraint fails (`db_user`.`m_user`, CONSTRAINT `fk_m_user_m_pekerjaan` FOREIGN KEY (`id_pekerjaan`) REFERENCES `m_pekerjaan` (`id_pekerjaan`))
 ERROR: 2020/11/30 06:04:17 userUsecaseImpl.go:16: Error 1452: Cannot add or update a child row: a foreign key constraint fails (`db_user`.`m_user`, CONSTRAINT `fk_m_user_m_pekerjaan` FOREIGN KEY (`id_pekerjaan`) REFERENCES `m_pekerjaan` (`id_pekerjaan`))
+ERROR: 2020/12/01 07:15:13 authController.go:36: Email Or Password was invalid
+ERROR: 2020/12/01 07:17:36 authController.go:36: Email Or Password was invalid
+ERROR: 2020/12/01 07:19:12 authRepoImpl.go:52: Error 1062: Duplicate entry 'maulana@gmail.com' for key 'm_account.email_UNIQUE'
+ERROR: 2020/12/01 07:50:36 authController.go:36: Account not yet registered
+ERROR: 2020/12/01 07:53:04 authController.go:36: Account not yet registered
+ERROR: 2020/12/01 07:54:28 authController.go:36: Account not yet registered
+ERROR: 2020/12/01 07:57:05 authController.go:36: Account not yet registered
+ERROR: 2020/12/01 07:57:13 authController.go:36: Account not yet registered
+ERROR: 2020/12/01 07:57:14 authController.go:36: Account not yet registered
+ERROR: 2020/12/01 07:57:16 authController.go:36: Account not yet registered
+ERROR: 2020/12/01 07:57:17 authController.go:36: Account not yet registered
+ERROR: 2020/12/01 08:13:47 authController.go:36: Email Or Password was invalid
+ERROR: 2020/12/01 09:11:02 authController.go:36: Email Or Password was invalid
+ERROR: 2020/12/01 09:11:07 authController.go:36: Email Or Password was invalid
+ERROR: 2020/12/01 09:13:56 authController.go:36: Email Or Password was invalid
+ERROR: 2020/12/01 09:17:17 authController.go:36: Email Or Password was invalid
+ERROR: 2020/12/01 09:17:28 authController.go:36: Account not yet registered
+ERROR: 2020/12/01 09:18:30 authController.go:36: Email Or Password was invalid
+ERROR: 2020/12/01 09:21:03 userRepoImpl.go:38: Error 1062: Duplicate entry '3209120503980004' for key 'm_user.nik_UNIQUE'
+ERROR: 2020/12/01 09:21:03 userUsecaseImpl.go:16: Error 1062: Duplicate entry '3209120503980004' for key 'm_user.nik_UNIQUE'
+ERROR: 2020/12/01 09:42:03 userRepoImpl.go:38: Error 1062: Duplicate entry '3209120503980004' for key 'm_user.nik_UNIQUE'
+ERROR: 2020/12/01 09:42:03 userUsecaseImpl.go:16: Error 1062: Duplicate entry '3209120503980004' for key 'm_user.nik_UNIQUE'
