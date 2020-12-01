@@ -5,7 +5,6 @@ import (
 	"github.com/MaulIbra/Test_Api_Server/model"
 	encrypt "github.com/MaulIbra/encrypt_module"
 	jwtToken "github.com/MaulIbra/go_module_jwtToken"
-	"log"
 	"sync"
 )
 
@@ -34,8 +33,6 @@ func (a authUsecase) Login(account *model.Account) (*model.Account, error) {
 	}()
 
 	authenticate := encrypt.CompareEncrypt(accountResp.Password, []byte(account.Password))
-	log.Println(accountResp.Password)
-	log.Println(account.Password)
 	if authenticate {
 		return &model.Account{
 			Email: account.Email,

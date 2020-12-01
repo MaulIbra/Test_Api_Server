@@ -34,7 +34,7 @@ func (ac *AuthController) Login(w http.ResponseWriter, r *http.Request){
 	accountResp, err := ac.Usecase.Login(&account)
 	if (accountResp.Token == "") && (err != nil) {
 		logs.ErrorLogger.Println(err)
-		utils.Response(w, http.StatusUnauthorized, accountResp)
+		utils.ResponseCustom(w, http.StatusUnauthorized,err.Error(), accountResp)
 		return
 	} else if err != nil {
 		logs.ErrorLogger.Println(err)

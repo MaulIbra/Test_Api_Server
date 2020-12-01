@@ -1,6 +1,6 @@
 # Documentation
 
-![db_user](https://user-images.githubusercontent.com/46882131/100556182-0519d780-32d3-11eb-8895-1eb666023d60.PNG)
+![db_user_new](https://user-images.githubusercontent.com/46882131/100691378-2950e380-33bb-11eb-8df6-6bb209bd5eed.PNG)
 
 **Setup Configuration**
 - Open config.env and change all environment variable
@@ -10,6 +10,10 @@
 2. Running main.go with command go run main.go
 
 **API ROUTES**
+- **Authentication** (to get token)
+1. /account/login [POST]
+2. /account/register [POST]
+- **User**
 1. /user [POST]
 2. /user/{page}/{limit} [GET] 
 3. /user/{id} [GET]

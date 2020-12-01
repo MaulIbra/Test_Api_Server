@@ -31,3 +31,11 @@ func ResponseWithoutPayload(res http.ResponseWriter, statusCode int){
 	byteOfData, _ := json.Marshal(response)
 	res.Write(byteOfData)
 }
+
+func ResponseCustom(res http.ResponseWriter, statusCode int,message string, data interface{}) {
+	res.Header().Set("Content-Type", "application/json")
+	res.WriteHeader(statusCode)
+	response := response{statusCode, message, data}
+	byteOfData, _ := json.Marshal(response)
+	res.Write(byteOfData)
+}
