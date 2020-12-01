@@ -1,19 +1,19 @@
-package domain
+package auth
 
 import (
 	"github.com/MaulIbra/Test_Api_Server/model"
 	"github.com/MaulIbra/Test_Api_Server/utils"
 	logs "github.com/MaulIbra/logs_module"
+	"github.com/gorilla/mux"
 	"net/http"
 )
 
 type AuthController struct {
-	Route   *AppRoute
 	Usecase IAuthUsecase
 }
 
-func (ac *AuthController) Auth()  {
-	account := ac.Route.Router.PathPrefix("/account").Subrouter()
+func (ac *AuthController) Auth(route *mux.Router)  {
+	account := route.PathPrefix("/account").Subrouter()
 	account.HandleFunc("/login",ac.Login).Methods(http.MethodPost)
 	account.HandleFunc("/register",ac.Register).Methods(http.MethodPost)
 }

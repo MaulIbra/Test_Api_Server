@@ -1,10 +1,11 @@
-package domain
+package auth
 
 import (
 	"errors"
 	"github.com/MaulIbra/Test_Api_Server/model"
 	encrypt "github.com/MaulIbra/encrypt_module"
 	jwtToken "github.com/MaulIbra/go_module_jwtToken"
+	guuid "github.com/google/uuid"
 	"sync"
 )
 
@@ -46,13 +47,15 @@ func (a authUsecase) Register(account *model.Account) (*model.Account, error) {
 	token := make(chan string)
 	var wg sync.WaitGroup
 
+	account.AccountId = guuid.New().String()
+
 	wg.Add(1)
 	go jwtToken.GenerateToken(7200, token, &wg)
 
 	encryptPass := encrypt.Encrypt([]byte(account.Password))
 	account.Password = encryptPass
 
-	err := a.authRepo.CreateAccount(account)
+	err := a.authRepo.CreateAccount(account,account.AccountId)
 	if err != nil {
 		return nil, err
 	}

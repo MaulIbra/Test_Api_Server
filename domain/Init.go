@@ -3,6 +3,8 @@ package domain
 import (
 	"context"
 	"github.com/MaulIbra/Test_Api_Server/config"
+	"github.com/MaulIbra/Test_Api_Server/domain/auth"
+	"github.com/MaulIbra/Test_Api_Server/domain/user"
 	"github.com/gorilla/mux"
 )
 
@@ -27,14 +29,14 @@ func (route *AppRoute) InitRoute()  {
 	env := config.NewEnv()
 	db := config.InitDB(env)
 
-	userRepo := NewUserRepo(db)
-	userUsecase := NewUserUsecase(userRepo)
-	userRoute := UserController{Route: route,Usecase: userUsecase}
-	userRoute.UserRoute()
+	userRepo := user.NewUserRepo(db)
+	userUsecase := user.NewUserUsecase(userRepo)
+	userRoute := user.UserController{Usecase: userUsecase}
+	userRoute.UserRoute(route.Router)
 
-	authRepo := NewAuthRepo(db)
-	authUsecase := NewAuthUsecase(authRepo)
-	authRoute := AuthController{Route: route,Usecase: authUsecase}
-	authRoute.Auth()
+	authRepo := auth.NewAuthRepo(db)
+	authUsecase := auth.NewAuthUsecase(authRepo)
+	authRoute := auth.AuthController{Usecase: authUsecase}
+	authRoute.Auth(route.Router)
 }
 
