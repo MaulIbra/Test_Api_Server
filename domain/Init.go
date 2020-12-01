@@ -26,9 +26,15 @@ func (route *AppRoute) Serve()  {
 func (route *AppRoute) InitRoute()  {
 	env := config.NewEnv()
 	db := config.InitDB(env)
+
 	userRepo := NewUserRepo(db)
 	userUsecase := NewUserUsecase(userRepo)
 	userRoute := UserController{Route: route,Usecase: userUsecase}
 	userRoute.UserRoute()
+
+	authRepo := NewAuthRepo(db)
+	authUsecase := NewAuthUsecase(authRepo)
+	authRoute := AuthController{Route: route,Usecase: authUsecase}
+	authRoute.Auth()
 }
 

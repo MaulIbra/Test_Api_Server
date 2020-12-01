@@ -15,6 +15,8 @@ github.com/BurntSushi/toml v0.3.1/go.mod h1:xHWCNGjB5oqiDr8zfno3MHue2Ht5sIBksp03
 github.com/BurntSushi/xgb v0.0.0-20160522181843-27f122750802/go.mod h1:IVnqGOEym/WlBOVXweHU+Q+/VP0lqqI8lqeDx9IjBqo=
 github.com/MaulIbra/encrypt_module v1.0.0 h1:9gKn3wZC9RiG02SBAud16sc5LCQ8BDUaHgfhVD/lGlM=
 github.com/MaulIbra/encrypt_module v1.0.0/go.mod h1:WsKtVeFoMqhS/nv6/Bn3uEGc1b0Ky+WWphRwCJE/RcM=
+github.com/MaulIbra/go_module_jwtToken v1.0.1 h1:29zOx3RaJuFzb4ijFfhDlUB3f/Hx5DE0BFKmmmqjL1E=
+github.com/MaulIbra/go_module_jwtToken v1.0.1/go.mod h1:Hxo4ZF15rL+oPwn9e5fzJJ8Kv6BW4MnNKl0OEmybtpg=
 github.com/MaulIbra/go_module_jwtToken v1.1.2 h1:sWkZGOsQknxwDxdkGjwxpVsOkRQMwlrbX2VI7RATHgA=
 github.com/MaulIbra/go_module_jwtToken v1.1.2/go.mod h1:Hxo4ZF15rL+oPwn9e5fzJJ8Kv6BW4MnNKl0OEmybtpg=
 github.com/MaulIbra/logs_module v1.0.0 h1:Cc+uqYsKFK6wSrs6SlhNOI/uQX7yXXowWH9wgXOMWZY=
