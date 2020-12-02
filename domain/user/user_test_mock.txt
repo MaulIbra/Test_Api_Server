@@ -1,0 +1,69 @@
+ERROR: 2020/12/02 06:41:58 userUsecaseImpl.go:16: all expectations were already fulfilled, call to database transaction Begin was not expected
+ERROR: 2020/12/02 06:42:42 userUsecaseImpl.go:16: call to database transaction Begin, was not expected, next expectation is: ExpectedCommit => expecting transaction Commit
+ERROR: 2020/12/02 06:43:23 userUsecaseImpl.go:21: all expectations were already fulfilled, call to Prepare 'SELECT 
+	u.id_user,
+    u.nik,
+    u.username,
+    u.tgl_lahir,
+    p.id_pendidikan,
+    p.label_pendidikan,
+    u.id_pekerjaan,
+    pk.label_pekerjaan,
+    u.user_status,
+    u.created_date,
+    u.update_date
+    FROM m_user as u INNER JOIN m_pendidikan as p
+    ON u.id_pendidikan = p.id_pendidikan inner join
+    m_pekerjaan as pk on u.id_pekerjaan = pk.id_pekerjaan
+	WHERE u.id_user = ?' query was not expected
+ERROR: 2020/12/02 06:44:24 userUsecaseImpl.go:21: all expectations were already fulfilled, call to Prepare 'SELECT 
+	u.id_user,
+    u.nik,
+    u.username,
+    u.tgl_lahir,
+    p.id_pendidikan,
+    p.label_pendidikan,
+    u.id_pekerjaan,
+    pk.label_pekerjaan,
+    u.user_status,
+    u.created_date,
+    u.update_date
+    FROM m_user as u INNER JOIN m_pendidikan as p
+    ON u.id_pendidikan = p.id_pendidikan inner join
+    m_pekerjaan as pk on u.id_pekerjaan = pk.id_pekerjaan
+	WHERE u.id_user = ?' query was not expected
+ERROR: 2020/12/02 06:46:00 userUsecaseImpl.go:16: call to database transaction Begin, was not expected, next expectation is: ExpectedPrepare => expecting Prepare statement which:
+  - matches sql: 'SELECT 
+	u\.id_user,
+    u\.nik,
+    u\.username,
+    u\.tgl_lahir,
+    p\.id_pendidikan,
+    p\.label_pendidikan,
+    u\.id_pekerjaan,
+    pk\.label_pekerjaan,
+    u\.user_status,
+    u\.created_date,
+    u\.update_date
+    FROM m_user as u INNER JOIN m_pendidikan as p
+    ON u\.id_pendidikan = p\.id_pendidikan inner join
+    m_pekerjaan as pk on u\.id_pekerjaan = pk\.id_pekerjaan
+	WHERE u\.id_user = \?'
+ERROR: 2020/12/02 06:56:04 userUsecaseImpl.go:16: Error 1062: Duplicate entry '3209120503980004' for key 'm_user.nik_UNIQUE'
+ERROR: 2020/12/02 06:57:09 userUsecaseImpl.go:16: Error 1452: Cannot add or update a child row: a foreign key constraint fails (`db_user`.`m_user`, CONSTRAINT `fk_m_user_m_pekerjaan` FOREIGN KEY (`id_pekerjaan`) REFERENCES `m_pekerjaan` (`id_pekerjaan`))
+ERROR: 2020/12/02 07:01:18 userUsecaseImpl.go:16: Error 1062: Duplicate entry '3209120503980054' for key 'm_user.nik_UNIQUE'
+ERROR: 2020/12/02 07:02:55 userUsecaseImpl.go:16: Error 1062: Duplicate entry '3209120503980054' for key 'm_user.nik_UNIQUE'
+ERROR: 2020/12/02 07:03:34 userUsecaseImpl.go:16: Error 1062: Duplicate entry '3209120503980054' for key 'm_user.nik_UNIQUE'
+ERROR: 2020/12/02 07:03:51 userUsecaseImpl.go:16: Error 1062: Duplicate entry '3209120503980004' for key 'm_user.nik_UNIQUE'
+ERROR: 2020/12/02 07:17:08 userUsecaseImpl.go:65: Error 1062: Duplicate entry '3209120503980004' for key 'm_user.nik_UNIQUE'
+ERROR: 2020/12/02 07:18:05 userUsecaseImpl.go:65: Error 1062: Duplicate entry '3209120503980004' for key 'm_user.nik_UNIQUE'
+ERROR: 2020/12/02 07:18:51 userUsecaseImpl.go:65: Error 1062: Duplicate entry '3209120503980004' for key 'm_user.nik_UNIQUE'
+ERROR: 2020/12/02 07:19:55 userUsecaseImpl.go:65: Error 1062: Duplicate entry '3209120503980004' for key 'm_user.nik_UNIQUE'
+ERROR: 2020/12/02 07:20:41 userUsecaseImpl.go:65: Error 1062: Duplicate entry '3209120503980004' for key 'm_user.nik_UNIQUE'
+ERROR: 2020/12/02 07:27:36 userUsecaseImpl.go:16: Error 1062: Duplicate entry '3209120503980054' for key 'm_user.nik_UNIQUE'
+ERROR: 2020/12/02 07:27:37 userUsecaseImpl.go:16: Error 1062: Duplicate entry '3209120503980054' for key 'm_user.nik_UNIQUE'
+ERROR: 2020/12/02 07:29:38 userUsecaseImpl.go:16: Error 1062: Duplicate entry '36d0035f-cd53-4b55-a50c-0ce77d7b8ee4' for key 'm_user.PRIMARY'
+ERROR: 2020/12/02 07:31:25 userUsecaseImpl.go:16: Error 1062: Duplicate entry '36d0035f-cd53-4b55-a50c-0ce77d7b8ee4' for key 'm_user.PRIMARY'
+ERROR: 2020/12/02 07:32:32 userUsecaseImpl.go:16: Error 1062: Duplicate entry '36d0035f-cd53-4b55-a50c-0ce77d7b8ee4' for key 'm_user.PRIMARY'
+ERROR: 2020/12/02 07:33:37 userUsecaseImpl.go:16: Error 1062: Duplicate entry '36d0035f-cd53-4b55-a50c-0ce77d7b8ee4' for key 'm_user.PRIMARY'
+ERROR: 2020/12/02 07:34:07 userUsecaseImpl.go:16: Error 1062: Duplicate entry '36d0035f-cd53-4b55-a50c-0ce77d7b8ee4' for key 'm_user.PRIMARY'

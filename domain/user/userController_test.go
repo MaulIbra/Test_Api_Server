@@ -72,3 +72,47 @@ func TestUserController_ReadUserById(t *testing.T) {
 	mockRouteUser().ServeHTTP(response,req)
 	assert.Equal(t,200,response.Code,"Response is expected")
 }
+
+func TestUserController_UpdateUser(t *testing.T) {
+	req, err := http.NewRequest("PUT", "/user/36d0035f-cd53-4b55-a50c-0ce77d7b8ee4", nil)
+	if err != nil {
+		t.Fatalf("error %v", err)
+	}
+
+	response := httptest.NewRecorder()
+	mockRouteUser().ServeHTTP(response,req)
+	assert.Equal(t,200,response.Code,"Response is expected")
+}
+
+func TestUserController_DeleteUser(t *testing.T) {
+	req, err := http.NewRequest("DELETE", "/user/36d0035f-cd53-4b55-a50c-0ce77d7b8ee4", nil)
+	if err != nil {
+		t.Fatalf("error %v", err)
+	}
+
+	response := httptest.NewRecorder()
+	mockRouteUser().ServeHTTP(response,req)
+	assert.Equal(t,200,response.Code,"Response is expected")
+}
+
+func TestUserController_ReadJob(t *testing.T) {
+	req, err := http.NewRequest("GET", "/job", nil)
+	if err != nil {
+		t.Fatalf("error %v", err)
+	}
+
+	response := httptest.NewRecorder()
+	mockRouteUser().ServeHTTP(response,req)
+	assert.Equal(t,200,response.Code,"Response is expected")
+}
+
+func TestUserController_ReadEducation(t *testing.T) {
+	req, err := http.NewRequest("GET", "/education", nil)
+	if err != nil {
+		t.Fatalf("error %v", err)
+	}
+
+	response := httptest.NewRecorder()
+	mockRouteUser().ServeHTTP(response,req)
+	assert.Equal(t,200,response.Code,"Response is expected")
+}

@@ -5,23 +5,22 @@ import (
 	"github.com/MaulIbra/Test_Api_Server/config"
 	"github.com/MaulIbra/Test_Api_Server/model"
 	"github.com/MaulIbra/Test_Api_Server/utils"
-	"github.com/google/uuid"
 	"github.com/stretchr/testify/assert"
 	"regexp"
 	"testing"
 )
 
 var userMock = &model.User{
-	UserId:       uuid.New().String(),
+	UserId:       "36d0035f-cd53-4b55-a50c-0ce77d7b8ee4",
 	IdCardNumber: "3209120503980004",
-	Username:     "Maulana Ibrahim",
+	Username:     "MAULANA IBRAHIM",
 	DateOfBirth:  "1998-03-05",
 	Job: model.Job{
-		JobId:    uuid.New().String(),
+		JobId:  "82225b07-30bb-11eb-b405-c85b766bafe8"  ,
 		JobLabel: "Wiraswasta",
 	},
 	Education: model.Education{
-		EducationId:    uuid.New().String(),
+		EducationId:    "5dedbec5-30bb-11eb-b405-c85b766bafe8",
 		EducationLabel: "Diploma",
 	},
 	UserStatus:  1,
